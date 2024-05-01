@@ -1,0 +1,45 @@
+.hamburger {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+#hamburgerIcon {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  margin: 20px;
+}
+
+#menu-button {
+  margin-right: 15px;
+  margin-top: 35px;
+}
+
+.MuiPaper-root {
+  min-width: 35%;
+}
+
+#box {
+  background-color: #5b2c87;
+  height: 100%;
+  /* padding-left: 10px; */
+}
+
+.MuiListItemText-primary {
+  color: #fff;
+}
+
+.MuiDivider-root {
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.MuiListItem-root {
+  display: flex;
+  /* flex-direction: column; This centers the text */
+  align-items: flex-start;
+  padding-left: 10px;
+}

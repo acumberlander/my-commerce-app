@@ -1,0 +1,19 @@
+.hero-container {
+  background-image: url(../../../images//woman-on-computer.jpg);
+  height: 800px;
+  width: 100%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-header-text {
+  font-weight: bold;
+  font-size: 285px;
+  margin: 0;
+  align-self: flex-end;
+  color: #fff;
+  position: absolute;
+  bottom: 250px;
+}

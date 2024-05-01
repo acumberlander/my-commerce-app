@@ -1,0 +1,46 @@
+.footer-container {
+  padding: 40px 40px 150px;
+  width: 100%;
+}
+
+.social-link {
+  display: flex;
+  max-width: 250px;
+  align-items: center;
+  margin: 10px;
+  width: fit-content;
+}
+
+.nav-link {
+  width: fit-content;
+}
+
+.nav-column {
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.footer-header {
+  font-family: 'Bungee', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: medium;
+  margin-top: 10px;
+}
+
+.tbc-logo {
+  width: 125px;
+  height: 125px;
+  margin-top: 10px;
+}
+
+.column {
+  max-width: 250px;
+}
