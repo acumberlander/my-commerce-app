@@ -9,7 +9,7 @@
   align-items: center;
   top: 0;
   position: fixed;
-  z-index: 10;
+  z-index: 100;
 }
 
 .left-nav-section {

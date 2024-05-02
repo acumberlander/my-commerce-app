@@ -2,7 +2,6 @@ import facebookIcon from '../../../../icons/icons8-facebook-50 (1).png';
 import instagramIcon from '../../../../icons/icons8-instagram-50.png';
 import linkedinIcon from '../../../../icons/icons8-linkedin-50.png';
 import xIcon from '../../../../icons/icons8-x-96.png';
-import tbcIcon from '../../../../icons/tbc_logo.png';
 import './MobileView.css';
 
 const MobileView = () => {
