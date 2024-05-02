@@ -2,10 +2,17 @@
   background-image: url(../../../images//woman-on-computer.jpg);
   height: 800px;
   width: 100%;
+  max-width: 1500px;
   background-size: cover;
   display: flex;
   justify-content: center;
   overflow: hidden;
+}
+
+.hero-header-container {
+  align-self: flex-end;
+  height: 400px;
+  border: 1px solid
 }
 
 .hero-header-text {
@@ -15,5 +22,50 @@
   align-self: flex-end;
   color: #fff;
   position: absolute;
-  bottom: 250px;
+  bottom: 200px;
+}
+
+@media (max-width: 1600px) {
+  .hero-header-text {
+    font-weight: bold;
+    font-size: 250px;
+    margin: 0;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 1405px) {
+  .hero-header-text {
+    font-weight: bold;
+    font-size: 200px;
+    margin: 0;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 1125px) {
+  .hero-header-text {
+    font-weight: bold;
+    font-size: 150px;
+    margin: 0;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero-header-text {
+    font-weight: bold;
+    font-size: 100px;
+    margin: 0;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 562px) {
+  .hero-header-text {
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0;
+    align-self: flex-end;
+  }
 }

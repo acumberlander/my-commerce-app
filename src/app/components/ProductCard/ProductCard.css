@@ -1,0 +1,71 @@
+.product-card-container {
+  width: 250px;
+  height: 300px;
+}
+
+.product-category {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 3px 5px;
+  margin-top: 5px;
+  border: 1px solid gray;
+  font-size: small;
+  max-width: 100px;
+  max-height: 15px;
+  width:fit-content;
+  text-align: center;
+}
+
+.star-and-review-group {
+  display: flex;
+  align-items: center;
+}
+
+.review-text {
+  font-size: x-small;
+  color: gray;
+}
+
+.review-and-price-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.product-card-review-section {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.product-card-image {
+  width:250px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.image-and-category {
+  border-radius: 10px;
+  width:250px;
+  height: 200px;
+  display: flex;
+  justify-content: right;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-card-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-btn {
+  width:120px;
+}

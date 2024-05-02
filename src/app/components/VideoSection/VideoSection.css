@@ -1,0 +1,32 @@
+.video-section-container {
+  background-image: url('../../../images/woman_listens_to_music.jpg');
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#play-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.play-btn {
+  border: none;
+  width: 150px;
+  top: 20px;
+  margin-left: 50px;
+}
+
+.video-overlay {
+  height: 200px;
+  width: 100%;
+  background-color: rgba(41, 41, 41, 0.65);
+  color: #fff;
+  padding: 50px;
+  box-sizing: border-box;
+}

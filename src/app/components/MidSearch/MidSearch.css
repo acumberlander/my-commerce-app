@@ -1,0 +1,36 @@
+.search-icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.extra-search-div {
+  height: 100px;
+  position: absolute;
+  top: 730px;
+  width: 100%;
+  max-width: 1000px;
+  z-index: 10;
+}
+
+.search-container-2 {
+  display: flex;
+  border-radius: 30px;
+  border: 1px solid gray;
+  padding: 10px;
+  align-items: center;
+}
+
+.search-container-2 > input {
+  border: none;
+  width: 300px;
+}
+
+.header-and-search-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px 30px;
+}

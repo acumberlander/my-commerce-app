@@ -2,3 +2,17 @@ body {
   margin: 0;
   width: 100%;
 }
+
+.white-btn {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #000;
+}
+
+.black-btn {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+}
