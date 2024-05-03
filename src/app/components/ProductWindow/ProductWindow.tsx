@@ -1,85 +1,47 @@
-import { Button } from "@mui/material"
+import { useState, MouseEvent } from 'react';
+import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material"
 import './ProductWindow.css';
 import ProductCard from "../ProductCard/ProductCard";
-import searchIcon from '../../../icons/search-interface-symbol.png';
-import { Product } from "../models/Product";
-import Image from "next/image";
+import { products } from "@/app/data/apiRequests";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000',
+      light: '#fff',
+    },
+  },
+});
+
+
 
 const ProductWindow = () => {
   
-  const products: Product[] = [
-    {
-      id: 'ifopqiawjef',
-      title: 'test product',
-      price: 10.51,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-    {
-      id: 'kj1;2l3kn',
-      title: 'test product',
-      price: 19.49,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-    {
-      id: 'asdfasdf',
-      title: 'test product',
-      price: 14.55,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-    {
-      id: 'qwerasdgv',
-      title: 'test product',
-      price: 134.99,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-    {
-      id: 'nmrtuawe23',
-      title: 'test product',
-      price: 134.99,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-    {
-      id: '346523ygaegsadrf',
-      title: 'test product',
-      price: 134.99,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-      reviews: ['nice', 'excellent!', 'Pretty cool!', "It's alright I guess."],
-      stars: 4,
-    },
-  ]
+  const setSelectedColor = (e: MouseEvent<HTMLElement>) => {
+    const btnClicked = e.target as HTMLElement; 
+    if (btnClicked.className === 'active-btn') {
+      return;
+    } else {
+      const activeButtons = document.querySelectorAll('.active-btn');
+      activeButtons.forEach((btn) => {
+        btn.classList.remove('active-btn');
+        btn.classList.add('inactive-btn');
+      })
+      btnClicked.classList.remove('inactive-btn');
+      btnClicked.classList.add('active-btn');
+    }
+  }
+
   return (
     <div className="product-window-container">
-      
       <div className="btn-container">
         <div className='filter-container'>
-          <Button className="black-btn">All</Button>
-          <Button className="white-btn">Electronics</Button>
-          <Button className="white-btn">Men</Button>
-          <Button className="white-btn">Women</Button>
+          <ToggleButton onChange={setSelectedColor} value="All" className="active-btn">All</ToggleButton>
+          <ToggleButton onChange={setSelectedColor} value="Electronics" className="inactive-btn">Electronics</ToggleButton>
+          <ToggleButton onChange={setSelectedColor} value="Men" className="inactive-btn">Men</ToggleButton>
+          <ToggleButton onChange={setSelectedColor} value="Women" className="inactive-btn">Women</ToggleButton>
         </div>
-        <Button className="white-btn see-all-products-btn">See All Products</Button>
       </div>
       <div className="products-container">
         {

@@ -6,5 +6,5 @@ export type Product = {
   image: string,
   category: string,
   stars?: number,
-  reviews?: string[],
+  reviews?: string[] | undefined,
 }

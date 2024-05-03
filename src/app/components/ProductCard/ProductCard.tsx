@@ -1,6 +1,6 @@
 import starIcon from '../../../icons/star.png';
 import './ProductCard.css';
-import { Product } from '../models/Product'
+import { Product } from '../../models/Product'
 import { Button } from '@mui/material'
 import Image from 'next/image';
 
@@ -20,7 +20,7 @@ const ProductCard = (product: Product) => {
         <div className="product-card-review-section">
           <div className="star-and-review-group">
             <Image className='star-icon' src={starIcon} alt="stars" />
-            <div className="review-text">{product.stars} {' '} ({product.reviews.length} Reviews)</div>
+            <div className="review-text">{product.stars} {' '} ({product?.reviews?.length} Reviews)</div>
           </div>
         </div>
         <div>${product.price}</div>

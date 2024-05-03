@@ -16,3 +16,10 @@ body {
   background-color: #000;
   color: #fff;
 }
+
+.black-btn:hover {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  background-color: #727272;
+  color: #fff;
+}
