@@ -31,9 +31,9 @@ const app = () => {
     <div className='app-container'>
       <Navbar />
       <Hero />
-      {/* <MidSearch />
+      <MidSearch />
       <ProductWindow />
-      <VideoSection />
+      {/* <VideoSection />
       <MarketingSection />
       <Subscription />
       <Footer /> */}
