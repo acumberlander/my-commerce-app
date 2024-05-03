@@ -30,8 +30,8 @@ const app = () => {
   return (
     <div className='app-container'>
       <Navbar />
-      {/* <Hero />
-      <MidSearch />
+      <Hero />
+      {/* <MidSearch />
       <ProductWindow />
       <VideoSection />
       <MarketingSection />

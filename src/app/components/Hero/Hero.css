@@ -6,13 +6,73 @@
   background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
 }
 
-.hero-header-container {
-  align-self: flex-end;
-  height: 400px;
+@media (max-width: 1000px) {
+  .hero-container {
+    height: 600px;
+  }
 }
+
+@media (max-width: 768px) {
+  .hero-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-container {
+    background-position: right;
+  }
+}
+
+.hero-text-container {
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  bottom: 375px;
+}
+
+@media (max-width: 1400px) {
+  .hero-text-container {
+    bottom: 400px;
+  }
+}
+
+@media (max-width: 1125px) {
+  .hero-text-container {
+    bottom: 420px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .hero-text-container {
+    bottom: 630px;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero-text-container {
+    bottom: 635px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text-container {
+    bottom: 840px;
+  }
+}
+
+@media (max-width: 562px) {
+  .hero-text-container {
+    bottom: 830px;
+  }
+}
+
 
 .hero-header-text {
   font-weight: bold;
@@ -20,51 +80,36 @@
   margin: 0;
   align-self: flex-end;
   color: #fff;
-  position: absolute;
+  /* position: absolute; */
   bottom: 200px;
 }
 
 @media (max-width: 1600px) {
   .hero-header-text {
-    font-weight: bold;
     font-size: 250px;
-    margin: 0;
-    align-self: flex-end;
   }
 }
 
 @media (max-width: 1405px) {
   .hero-header-text {
-    font-weight: bold;
     font-size: 200px;
-    margin: 0;
-    align-self: flex-end;
   }
 }
 
 @media (max-width: 1125px) {
   .hero-header-text {
-    font-weight: bold;
     font-size: 150px;
-    margin: 0;
-    align-self: flex-end;
   }
 }
 
 @media (max-width: 850px) {
   .hero-header-text {
-    font-weight: bold;
-    font-size: 100px;
-    margin: 0;
-    align-self: flex-end;
+    font-size: 120px;
   }
 }
 
 @media (max-width: 562px) {
   .hero-header-text {
-    font-weight: bold;
-    font-size: 50px;
-    margin: 0;
-    align-self: flex-end;
+    font-size: 120px;
   }
 }
