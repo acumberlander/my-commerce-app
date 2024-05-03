@@ -1,6 +1,6 @@
 'use client';
 
-import hamburgerIcon from '../../../../icons/icons8-hamburger-menu-144(@3×).png';
+import hamburgerIcon from '../../../../icons/menu.png';
 import './MobileView.css';
 
 import React, { useState } from 'react';
@@ -10,29 +10,11 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import Image from 'next/image';
 
 const MobileView = () => {
   const [state, setState] = useState({ right: false });
-
-  const goToSection = (text: string): string | undefined => {
-    switch (text) {
-      case 'Home':
-        return '#home';
-      case 'About Us':
-        return '#about-us';
-      case 'Contact Us':
-        return '#contact-us';
-      case 'Donate':
-        return '#donate';
-      case 'Milestones':
-        return '#milestones';
-
-      default:
-        return '';
-    }
-  };
 
   const toggleDrawer =
     (anchor: 'right', open: boolean) =>
@@ -56,35 +38,23 @@ const MobileView = () => {
       id="box"
     >
       <List>
-        <ListItem alignItems="center" disablePadding>
-          <a href="#home">
-            <ListItemText primary="Home" />
+          <a href="/">
+            <ListItem alignItems="center" disablePadding>
+                <ListItemText primary="Home" />
+            </ListItem>
           </a>
-        </ListItem>
         <Divider />
-        <ListItem disablePadding>
-          <a href="#about-us">
-            <ListItemText primary="About Us" />
+          <a href="#shop">
+            <ListItem disablePadding>
+                <ListItemText primary="Shop" />
+            </ListItem>
           </a>
-        </ListItem>
         <Divider />
-        <ListItem disablePadding>
-          <a href="#milestones">
-            <ListItemText primary="Milestones" />
+          <a href="#blog">
+            <ListItem disablePadding>
+                <ListItemText primary="Blog" />
+            </ListItem>
           </a>
-        </ListItem>
-        <Divider />
-        <ListItem disablePadding>
-          <a href="#contact-us">
-            <ListItemText primary="Contact Us" />
-          </a>
-        </ListItem>
-        <Divider />
-        <ListItem disablePadding>
-          <a href="#donate">
-            <ListItemText primary="Donate" />
-          </a>
-        </ListItem>
         <Divider />
       </List>
     </Box>
@@ -92,9 +62,7 @@ const MobileView = () => {
 
   return (
     <React.Fragment key={'right'}>
-      <Button id="menu-button" onClick={toggleDrawer('right', true)}>
-        <img id="hamburgerIcon" src={hamburgerIcon} alt="" />
-      </Button>
+      <Image onClick={toggleDrawer('right', true)} id="hamburgerIcon" src={hamburgerIcon} alt="" />
       <Drawer
         anchor={'right'}
         open={state['right']}

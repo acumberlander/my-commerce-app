@@ -30,13 +30,13 @@ const app = () => {
   return (
     <div className='app-container'>
       <Navbar />
-      <Hero />
+      {/* <Hero />
       <MidSearch />
       <ProductWindow />
       <VideoSection />
       <MarketingSection />
       <Subscription />
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }
