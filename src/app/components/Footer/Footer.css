@@ -40,7 +40,7 @@
 
 .left-footer-column {
   display: flex;
-  width:700px;
+  max-width:700px;
 }
 
 .about-column {

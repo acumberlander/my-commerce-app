@@ -2,7 +2,7 @@
   background-image: url(../../../images//woman-on-computer.jpg);
   height: 800px;
   width: 100%;
-  max-width: 1500px;
+  
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -28,6 +28,12 @@
   }
 }
 
+@media (max-width: 420px) {
+  .hero-container {
+    background-position: right;
+  }
+}
+
 .hero-text-container {
   overflow-x: hidden;
   display: flex;
@@ -40,39 +46,44 @@
 @media (max-width: 1400px) {
   .hero-text-container {
     bottom: 400px;
+    max-width: 1400px;
   }
 }
 
 @media (max-width: 1125px) {
   .hero-text-container {
     bottom: 420px;
+    max-width: 1125px;
   }
 }
 
 @media (max-width: 1000px) {
   .hero-text-container {
     bottom: 630px;
+    max-width: 1000px;
   }
 }
 
 @media (max-width: 850px) {
   .hero-text-container {
     bottom: 635px;
+    max-width: 850px;
   }
 }
 
 @media (max-width: 768px) {
   .hero-text-container {
     bottom: 840px;
+    max-width: 768px
   }
 }
 
 @media (max-width: 562px) {
   .hero-text-container {
     bottom: 830px;
+    max-width: 300px
   }
 }
-
 
 .hero-header-text {
   font-weight: bold;

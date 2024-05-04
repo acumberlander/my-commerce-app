@@ -37,13 +37,26 @@
   align-items: center;
   background-color: #fff;
   width: 300px;
+  max-width: 300px;
   padding-left: 30px;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .input-container > input {
   border: none;
   width: 230px;
+}
+
+@media (max-width: 499px) {
+  .input-container {
+    width: 200px;
+    padding-left: 10px;
+  }
+  .input-container > input {
+    border: none;
+    width: 150px;
+  }
 }
 
 .left-side {

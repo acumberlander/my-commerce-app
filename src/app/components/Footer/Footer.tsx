@@ -7,20 +7,6 @@ import './Footer.css';
 import Image from 'next/image';
 
 const Footer = () => {
-  const [mobileView, setMobileView] = useState(false);
-
-  useEffect(() => {
-    const setResponsiveness = () => {
-      return window.innerWidth < 768
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
-  }, []);
-
   return (
     <div className="footer-container">
       <div className="column-container">
