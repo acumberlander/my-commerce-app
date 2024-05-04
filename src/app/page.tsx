@@ -35,8 +35,8 @@ const app = () => {
       <ProductWindow />
       <VideoSection />
       <MarketingSection />
-      {/* <Subscription />
-      <Footer /> */}
+      <Subscription />
+      <Footer />
     </div>
   )
 }
