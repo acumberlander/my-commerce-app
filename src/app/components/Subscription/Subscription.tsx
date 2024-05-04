@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import './Subscription.css';
 import { Button } from '@mui/material';
 
