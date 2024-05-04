@@ -1,20 +1,8 @@
-import { useState, MouseEvent } from 'react';
-import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import { MouseEvent } from 'react';
+import { ToggleButton } from "@mui/material"
 import './ProductWindow.css';
 import ProductCard from "../ProductCard/ProductCard";
 import { products } from "@/app/data/apiRequests";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000',
-      light: '#fff',
-    },
-  },
-});
-
-
 
 const ProductWindow = () => {
   

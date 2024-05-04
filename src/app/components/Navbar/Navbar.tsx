@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import logo from '../../../icons/squiggle.png';
 import cart from '../../../icons/online-shopping.png';
-import search from '../../../icons/search-interface-symbol.png';
 import avatar from '../../../icons/profile-pic.png';
 import './Navbar.css';
 import Image from 'next/image';
