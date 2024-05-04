@@ -1,0 +1,14 @@
+.carousel-window {
+  height: 325px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-item-container {
+  display: flex;
+  justify-content: space-between;
+  width: 2350px;
+}

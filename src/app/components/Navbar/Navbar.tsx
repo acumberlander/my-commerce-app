@@ -24,8 +24,6 @@ const Navbar = () => {
     window.addEventListener('resize', () => setResponsiveness());
   }, []);
 
-  const view = mobileView ? 'hamburger' : 'navbar-container';
-
   return (
     <div className="navbar-container">
         <a className="left-nav-section" href='/'>
