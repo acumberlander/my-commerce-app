@@ -35,12 +35,33 @@ const ProductWindow = () => {
 
   return (
     <div className="product-window-container">
-      <div className="btn-container">
-        <div className='filter-container'>
-          <ToggleButton onChange={setSelectedColor} value="All" className="active-btn">All</ToggleButton>
-          <ToggleButton onChange={setSelectedColor} value="Electronics" className="inactive-btn">Electronics</ToggleButton>
-          <ToggleButton onChange={setSelectedColor} value="Men" className="inactive-btn">Men</ToggleButton>
-          <ToggleButton onChange={setSelectedColor} value="Women" className="inactive-btn">Women</ToggleButton>
+      <div className="filter-slider-window">
+        <div className="btn-container">
+          <div className='filter-container'>
+            <ToggleButton 
+              onChange={setSelectedColor} 
+              value="All" 
+              className="active-btn"
+            >All</ToggleButton>
+              
+            <ToggleButton 
+              onChange={setSelectedColor} 
+              value="Electronics" 
+              className="inactive-btn"
+            >Electronics</ToggleButton>
+            
+            <ToggleButton 
+              onChange={setSelectedColor} 
+              value="Men" 
+              className="inactive-btn"
+            >Men</ToggleButton>
+            
+            <ToggleButton 
+              onChange={setSelectedColor} 
+              value="Women" 
+              className="inactive-btn"
+            >Women</ToggleButton>
+          </div>
         </div>
       </div>
       <div className="products-container">
