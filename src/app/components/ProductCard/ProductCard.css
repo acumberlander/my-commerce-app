@@ -1,6 +1,18 @@
 .product-card-container {
-  width: 250px;
+  width: 300px;
   height: 300px;
+}
+
+@media (max-width: 1389px) {
+  .product-card-container {
+    width:250px;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-card-container {
+    width:300px;
+  }
 }
 
 .product-category {
@@ -29,7 +41,7 @@
 .review-and-price-container {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
+  margin: 15px 0;
 }
 
 .product-card-review-section {
@@ -51,10 +63,28 @@
 
 .image-and-category {
   border-radius: 10px;
-  width:250px;
+  width:300px;
   height: 200px;
   display: flex;
   justify-content: right;
+}
+
+@media (max-width: 1389px) {
+  .image-and-category {
+    width:250px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .image-and-category {
+    width:250px;
+  }
+}
+
+@media (max-width: 900px) {
+  .image-and-category {
+    width:300px;
+  }
 }
 
 .product-name {

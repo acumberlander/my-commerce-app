@@ -33,8 +33,8 @@ const app = () => {
       <Hero />
       <MidSearch />
       <ProductWindow />
-      {/* <VideoSection />
-      <MarketingSection />
+      <VideoSection />
+      {/* <MarketingSection />
       <Subscription />
       <Footer /> */}
     </div>
