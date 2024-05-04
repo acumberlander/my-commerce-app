@@ -3,7 +3,6 @@ import facebookIcon from '../../../icons/facebook-48.png';
 import instagramIcon from '../../../icons/icons8-instagram-50.png';
 import linkedinIcon from '../../../icons/white_linkedin.png';
 import xIcon from '../../../icons/icons8-x-96.png';
-import MobileView from './Views/MobileView';
 import './Footer.css';
 import Image from 'next/image';
 
