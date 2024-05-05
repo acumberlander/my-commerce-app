@@ -6,11 +6,32 @@ import electricIcon from '../../../icons/lightning.png';
 import cleanIcon from '../../../icons/clean.png';
 import './MarketingSection.css';
 import Slider from '../Slider/Slider';
+import { Product } from '@/app/models/Product';
 
 const MarketingSection = () => {
   const [mobileView, setMobileView] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<Boolean>(true);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products');
+        if (response.data.length) {
+          const productDataCopy = [...response.data];
+          productDataCopy.map((item: Product) => {
+            if (item.title.length > 50) {
+              item.title = item.title.slice(0, 47) + '...';
+            }
+          });
+          setProducts(productDataCopy);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching product data: ', error);
+        setLoading(false);
+      }
+    };
     const setResponsiveness = () => {
       return window.innerWidth < 1251
         ? setMobileView(true)
@@ -20,6 +41,8 @@ const MarketingSection = () => {
     setResponsiveness();
 
     window.addEventListener('resize', () => setResponsiveness());
+
+    fetchData();
   }, []);
 
   return (
@@ -116,7 +139,7 @@ const MarketingSection = () => {
         <div className="carousel-header-container">
           <h1>Explore our curated categories and transform your living spaces</h1>
         </div>
-        <Slider />
+        <Slider {...products}/>
       </div>
 
     </div>

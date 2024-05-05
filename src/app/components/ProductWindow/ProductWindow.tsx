@@ -1,11 +1,37 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, Suspense, useEffect, useState } from 'react';
 import { ToggleButton } from "@mui/material"
 import './ProductWindow.css';
-import ProductCard from "../ProductCard/ProductCard";
-import { products } from "@/app/data/apiRequests";
+import { Product } from '@/app/models/Product';
+import ProductCard from '../ProductCard/ProductCard';
+import axios from 'axios';
 
 const ProductWindow = () => {
-  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<Boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products');
+        if (response.data.length) {
+          const productDataCopy = [...response.data];
+          productDataCopy.map((item: Product) => {
+            if (item.title.length > 50) {
+              item.title = item.title.slice(0, 47) + '...';
+            }
+          });
+          setProducts(productDataCopy);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching product data: ', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const setSelectedColor = (e: MouseEvent<HTMLElement>) => {
     const btnClicked = e.target as HTMLElement; 
     if (btnClicked.className === 'active-btn') {
@@ -53,11 +79,9 @@ const ProductWindow = () => {
         </div>
       </div>
       <div className="products-container">
-        {
-          products.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))
-        }
+        {products?.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
       </div>
     </div>
   )
