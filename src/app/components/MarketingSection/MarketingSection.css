@@ -99,3 +99,40 @@
   width: 100%;
   margin-top: 50px;
 }
+
+.carousel-item-container {
+  display: flex;
+  justify-content: space-between;
+  width: 2350px;
+}
+
+.carousel-item {
+  border-radius: 25px;
+  width: 350px;
+  height: 300px;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 0 0 20px 20px;
+  border: 1px solid lightgray;
+}
+
+.slider-category {
+  width: auto;
+  max-width: 100px;
+  background-color: rgb(251, 251, 251);
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+}
+
+.carousel-window {
+  height: 325px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

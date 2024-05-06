@@ -8,6 +8,7 @@ const Slider = (products: Product[]) => {
     <div className="carousel-window">
       <div className="carousel-item-container">
         {
+          Array.isArray(products) &&
           products?.map((product) => (
             <SliderItem key={product.id} {...product} />
           ))
