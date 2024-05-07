@@ -37,7 +37,7 @@ const ProductCard = (product: Product) => {
       </div>
 
       <div className="product-card-btn-container">
-        <Button className='card-btn white-btn'>Add to Card</Button>
+        <Button className='card-btn white-btn'>Add to Cart</Button>
         <Button className='card-btn black-btn'>Buy Now</Button>
       </div>
     </div>

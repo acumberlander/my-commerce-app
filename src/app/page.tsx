@@ -10,19 +10,22 @@ import VideoSection from "./components/VideoSection/VideoSection";
 import MarketingSection from "./components/MarketingSection/MarketingSection";
 import Subscription from "./components/Subscription/Subscription";
 import Footer from "./components/Footer/Footer";
+// import { AppWrapper } from "@/context";
 
 
 const app = () => {
-    
+
   return (
     <div className='app-container'>
-      <Navbar />
-      <Hero />
-      <MidSearch />
-      <ProductWindow />
-      <VideoSection />
-      <MarketingSection />
-      <Subscription />
+      {/* <AppWrapper> */}
+        <Navbar />
+        <Hero />
+        <MidSearch />
+        <ProductWindow />
+        <VideoSection />
+        <MarketingSection />
+        <Subscription />
+      {/* </AppWrapper> */}
       <Footer />
     </div>
   )
