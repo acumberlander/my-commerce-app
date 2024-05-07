@@ -2,7 +2,7 @@
   background-image: url(../../../images//woman-on-computer.jpg);
   height: 800px;
   width: 100%;
-  
+  max-width: 1500px;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -38,9 +38,9 @@
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  position: absolute;
+  /* position: absolute; */
   max-width: 1500px;
-  bottom: 375px;
+  /* bottom: 375px; */
 }
 
 @media (max-width: 1400px) {
@@ -81,7 +81,7 @@
 @media (max-width: 562px) {
   .hero-text-container {
     bottom: 830px;
-    max-width: 300px
+    max-width: 500px
   }
 }
 
@@ -121,6 +121,6 @@
 
 @media (max-width: 562px) {
   .hero-header-text {
-    font-size: 120px;
+    font-size: 85px;
   }
 }
