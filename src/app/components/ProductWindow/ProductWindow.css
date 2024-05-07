@@ -12,8 +12,9 @@
 .loading-container {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+  min-height: 300px;
   width: 100%;
-  border: 1px solid red;
   align-self: center;
 }
 
@@ -48,14 +49,14 @@
 .filter-container {
   display: flex;
   justify-content: space-around;
-  width: 450px;
+  width: 750px;
   height: 40px;
 }
 
 .btn-container {
   display: flex;
   align-items: center;
-  min-width: 525px;
+  min-width: 725px;
   margin-bottom: 50px;
 }
 
