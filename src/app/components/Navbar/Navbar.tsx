@@ -14,12 +14,11 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useUserContext } from '../UserProvider';
-import { ModalAnchor } from '@/app/models/Product';
 
 
 const Navbar = () => {
   const [mobileView, setMobileView] = useState(false);
-  const [state, setState] = useState<ModalAnchor>({ right: false });
+  const [state, setState] = useState({ right: false });
   const { signOutUser } = useUserContext();
   const toggleDrawer = (anchor: 'right', open: boolean) =>
   (event: React.KeyboardEvent | React.MouseEvent) => {
