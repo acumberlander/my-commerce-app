@@ -10,22 +10,31 @@ import VideoSection from "./components/VideoSection/VideoSection";
 import MarketingSection from "./components/MarketingSection/MarketingSection";
 import Subscription from "./components/Subscription/Subscription";
 import Footer from "./components/Footer/Footer";
-// import { AppWrapper } from "@/context";
+import { AppWrapper, useAppContext } from "./components/UserProvider";
+import AuthPage from "./auth/page";
 
 
 const app = () => {
+  const loggedIn  = useAppContext();
 
   return (
     <div className='app-container'>
-      {/* <AppWrapper> */}
-        <Navbar />
-        <Hero />
-        <MidSearch />
-        <ProductWindow />
-        <VideoSection />
-        <MarketingSection />
-        <Subscription />
-      {/* </AppWrapper> */}
+      <AppWrapper>
+        {loggedIn ? 
+          ( <>
+              <Navbar />
+              <Hero />
+              <MidSearch />
+              <ProductWindow />
+              <VideoSection />
+              <MarketingSection />
+              <Subscription />
+            </>
+          ): (
+          <AuthPage />
+        )
+        }
+      </AppWrapper>
       <Footer />
     </div>
   )

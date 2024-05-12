@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useState } from "react";
-
+import './Auth.css';
 import { useUser } from "../UserProvider";
 // import router from "next/router";
 
@@ -28,7 +28,12 @@ const Auth = () => {
   const handleSignIn = async (email: string, password: string) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      setLoggedIn(true);
+      if (response) {
+        console.log(response);
+        setLoggedIn(true);
+      } else {
+        console.log("It didn't work...");
+      }
     } catch (error: any) {
       console.error(error.message);
     }
@@ -46,20 +51,25 @@ const Auth = () => {
 
 
   return (
-    <div>
-      <input 
-        type="email" 
-        placeholder="email" 
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input 
-        type="password" 
-        placeholder="password" 
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <div className="auth-container">
+      <div className="auth-form-container">
+        <h1 className="email-auth-header">Sign in With Email</h1>
+        <input 
+          type="email" 
+          placeholder="Email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="auth-input"
+        />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="auth-input"
+        />
       <button onClick={()=> handleSignIn(email, password)}>Sign in with Email</button>
+      </div>
     </div>
   )
 }

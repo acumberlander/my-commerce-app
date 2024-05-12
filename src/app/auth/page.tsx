@@ -3,12 +3,10 @@ import Auth from '../components/Auth/Auth'
 import { AppWrapper } from '../components/UserProvider'
 const AuthPage = () => {
   return (
-    <div>
-      <AppWrapper>
-        <Auth />
-      </AppWrapper>
-    </div>
+    <>
+      <Auth />
+    </>
   )
 }
 
-export default AuthPage
+export default AuthPage;
