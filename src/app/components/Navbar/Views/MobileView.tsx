@@ -6,16 +6,16 @@ import './MobileView.css';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Image from 'next/image';
+import { useUserContext } from '../../UserProvider';
 
 const MobileView = () => {
   const [state, setState] = useState({ right: false });
-
+  const { signOutUser } = useUserContext();
   const toggleDrawer =
     (anchor: 'right', open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -53,6 +53,12 @@ const MobileView = () => {
           <a href="#blog">
             <ListItem disablePadding>
                 <ListItemText primary="Blog" />
+            </ListItem>
+          </a>
+        <Divider />
+          <a onClick={signOutUser}>
+            <ListItem disablePadding>
+                <ListItemText primary="Sign Out" />
             </ListItem>
           </a>
         <Divider />
