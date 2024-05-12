@@ -7,18 +7,20 @@ import ProductCard from '../ProductCard/ProductCard';
 import axios from 'axios';
 
 
-type DefaultFilterState = {
+interface DefaultFilterState {
   all: string,
   electronics: string,
   men: string,
   women: string,
+  jewelery: string,
 };
 
 const defaultFilterState: DefaultFilterState = {
-  all: 'active',
-  electronics: 'inactive',
-  men: 'inactive',
-  women: 'inactive',
+  all: 'active-btn',
+  electronics: 'inactive-btn',
+  men: 'inactive-btn',
+  women: 'inactive-btn',
+  jewelery: 'inactive-btn',
 };
 
 const ProductWindow = () => {
@@ -58,6 +60,7 @@ const ProductWindow = () => {
           electronics: 'active-btn',
           men: 'inactive-btn',
           women: 'inactive-btn',
+          jewelery: 'inactive-btn',
         });
       case 'men':
         setFilterState({
@@ -65,6 +68,7 @@ const ProductWindow = () => {
           electronics: 'inactive-btn',
           men: 'active-btn',
           women: 'inactive-btn',
+          jewelery: 'inactive-btn',
         });
       case 'women':
         setFilterState({
@@ -72,6 +76,15 @@ const ProductWindow = () => {
           electronics: 'inactive-btn',
           men: 'inactive-btn',
           women: 'active-btn',
+          jewelery: 'inactive-btn',
+        });
+      case 'jewelery':
+        setFilterState({
+          all: 'inactive-btn',
+          electronics: 'inactive-btn',
+          men: 'inactive-btn',
+          women: 'inactive-btn',
+          jewelery: 'active-btn',
         });
     
       default:
@@ -80,6 +93,7 @@ const ProductWindow = () => {
           electronics: 'inactive-btn',
           men: 'inactive-btn',
           women: 'inactive-btn',
+          jewelery: 'inactive-btn',
         });
         break;
     }
@@ -100,6 +114,7 @@ const ProductWindow = () => {
 
   const filterProducts = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setSelectedColor(e);
     let filteredProducts: Product[] = [];
     setLoading(true);
     axios.get('https://fakestoreapi.com/products')
@@ -125,36 +140,31 @@ const containerClass = loading ? 'loading-container' : 'products-container'
         <div className="btn-container">
           <div className='filter-container'>
             <ToggleButton 
-              onChange={setSelectedColor} 
               value="All" 
-              className="active-btn filter-btn"
+              className={`${filterState.all} filter-btn`}
               onClick={filterProducts}
             >All</ToggleButton>
               
             <ToggleButton 
-              onChange={setSelectedColor} 
               value="Electronics" 
-              className="inactive-btn filter-btn"
+              className={`${filterState.electronics} filter-btn`}
               onClick={filterProducts}
             >Electronics</ToggleButton>
             
             <ToggleButton 
-              onChange={setSelectedColor} 
               value="Men's Clothing" 
-              className="inactive-btn filter-btn"
+              className={`${filterState.men} filter-btn`}
               onClick={filterProducts}
             >Men's Clothing</ToggleButton>
             
             <ToggleButton 
-              onChange={setSelectedColor} 
               value="Women's Clothing" 
-              className="inactive-btn filter-btn"
+              className={`${filterState.women} filter-btn`}
               onClick={filterProducts}
             >Women's Clothing</ToggleButton>
             <ToggleButton 
-              onChange={setSelectedColor} 
               value="Jewelery" 
-              className="inactive-btn filter-btn"
+              className={`${filterState.jewelery} filter-btn`}
               onClick={filterProducts}
             >Jewelery</ToggleButton>
           </div>

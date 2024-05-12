@@ -11,6 +11,7 @@ import { auth } from "../../utils/firebase";
 import { useState } from "react";
 import './Auth.css';
 import { useUserContext } from "../UserProvider";
+import { CircularProgress } from "@mui/material";
 
 export const listenToAuthChanges = (callback: any) => {
   return onAuthStateChanged(auth, (user) => {
@@ -23,17 +24,21 @@ const Auth = () => {
 
   const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("password!");
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = async (email: string, password: string) => {
+    setLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       if (response) {
         console.log(response);
         setLoggedIn(true);
+        setLoading(false);
       } else {
         console.log("It didn't work...");
       }
     } catch (error: any) {
+      setLoading(false);
       console.error(error.message);
     }
   };
@@ -67,7 +72,10 @@ const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="auth-input"
         />
-      <button onClick={()=> handleSignIn(email, password)}>Sign in with Email</button>
+        <button onClick={() => handleSignIn(email, password)}>Sign in with Email</button>
+        <div className="spinner-container">
+          { loading ? <CircularProgress /> : null }
+        </div>
       </div>
     </div>
   )

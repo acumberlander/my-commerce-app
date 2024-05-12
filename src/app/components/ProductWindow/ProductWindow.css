@@ -19,19 +19,19 @@
 }
 
 .inactive-btn {
-  border: 1px solid lightgray;
-  border-radius: 30px;
-  background-color: #fff;
-  color: #000;
+  border: 1px solid lightgray !important;
+  border-radius: 30px !important;
+  background-color: #fff !important;
+  color: #000 !important;
   min-width: 100px;
   height: 40px;
 }
 
 .active-btn {
-  border: 1px solid lightgray;
-  border-radius: 30px;
-  background-color: #000;
-  color: #fff;
+  border: 1px solid lightgray !important;
+  border-radius: 30px !important;
+  background-color: #000 !important;
+  color: #fff !important;
   min-width: 100px;
   height: 40px;
 }
