@@ -1,16 +1,74 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import logo from '../../../icons/squiggle.png';
 import cart from '../../../icons/online-shopping.png';
 import avatar from '../../../icons/profile-pic.png';
 import './Navbar.css';
 import Image from 'next/image';
 import MobileView from './Views/MobileView';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import { useUserContext } from '../UserProvider';
+import { ModalAnchor } from '@/app/models/Product';
+
 
 const Navbar = () => {
   const [mobileView, setMobileView] = useState(false);
+  const [state, setState] = useState<ModalAnchor>({ right: false });
+  const { signOutUser } = useUserContext();
+  const toggleDrawer = (anchor: 'right', open: boolean) =>
+  (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
 
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor: 'right') => (
+    <Box
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+      id="box"
+    >
+      <List>
+          <a href="/">
+            <ListItem alignItems="center" disablePadding>
+                <ListItemText primary="Home" />
+            </ListItem>
+          </a>
+        <Divider />
+          <a href="#shop">
+            <ListItem disablePadding>
+                <ListItemText primary="Shop" />
+            </ListItem>
+          </a>
+        <Divider />
+          <a href="#blog">
+            <ListItem disablePadding>
+                <ListItemText primary="Blog" />
+            </ListItem>
+          </a>
+        <Divider />
+          <a className="sign-out-link" onClick={signOutUser}>
+            <ListItem disablePadding>
+                <ListItemText primary="Sign Out" />
+            </ListItem>
+          </a>
+        <Divider />
+      </List>
+    </Box>
+  );
   useEffect(() => {
     const setResponsiveness = () => {
       return window.innerWidth < 768
@@ -50,17 +108,25 @@ const Navbar = () => {
             </div>
         </a>
         {mobileView ? (
-          <>
+          <Fragment key={'right'}>
             <div className='profile-container'>
               <MobileView />
             </div>
-          </>
+          </Fragment>
         ): (
-          <>
+          <Fragment key={'right'}>
             <div className='profile-container'>
-              <Image id="profile" src={avatar} alt="profile" />
+              <Image onClick={toggleDrawer('right', true)} id="profile" src={avatar} alt="profile" />
+              <Drawer
+                anchor={'right'}
+                open={state['right']}
+                onClose={toggleDrawer('right', false)}
+                id="drawer"
+              >
+                {list('right')}
+              </Drawer>
             </div>
-          </>
+          </Fragment>
         )
         }
           </div>

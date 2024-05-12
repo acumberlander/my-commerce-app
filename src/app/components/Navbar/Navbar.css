@@ -124,6 +124,10 @@ a {
   color: #000;
 }
 
+.sign-out-link {
+  cursor: pointer;
+}
+
 .right-nav-section {
   display: flex;
   justify-content: right;

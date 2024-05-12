@@ -10,8 +10,7 @@ import {
 import { auth } from "../../utils/firebase";
 import { useState } from "react";
 import './Auth.css';
-import { useUser } from "../UserProvider";
-// import router from "next/router";
+import { useUserContext } from "../UserProvider";
 
 export const listenToAuthChanges = (callback: any) => {
   return onAuthStateChanged(auth, (user) => {
@@ -20,10 +19,10 @@ export const listenToAuthChanges = (callback: any) => {
 };
 
 const Auth = () => {
-  const { setLoggedIn } = useUser();
+  const { setLoggedIn } = useUserContext();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("password!");
 
   const handleSignIn = async (email: string, password: string) => {
     try {
@@ -40,14 +39,14 @@ const Auth = () => {
   };
 
   const handleSignInWithGoogle = async () => {
-      const provider = new GoogleAuthProvider();
-      try {
-        await signInWithPopup(auth, provider);
-        setLoggedIn(true);
-      } catch (error: any) {
-        console.error(error.message);
-      }
-    };
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      setLoggedIn(true);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
 
 
   return (

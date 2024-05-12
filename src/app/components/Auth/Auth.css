@@ -2,16 +2,18 @@
   background-color: #fff;
   width: 100%;
   max-width: 1500px;
-  height: 1050px;
+  height: 100vh;
+  max-height: 1280px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .auth-form-container {
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
-  border: 1px solid red;
+  border: 1px solid lightgray;
+  box-shadow: 7px 5px 5px #000;
   max-height: 500px;
   min-height: 400px;
   border-radius: 20px;
@@ -24,6 +26,7 @@
 .auth-form-container > button {
   width: 100%;
   max-width: 300px;
+  padding: 10px 5px;
 }
 
 .auth-input {
