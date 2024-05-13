@@ -4,17 +4,17 @@ body {
 }
 
 .black-btn {
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
-  width: 49%;
+  border: 1px solid lightgray !important;
+  border-radius: 20px !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  padding: 7px !important;
+  width: 49% !important;
 }
 
 .black-btn:hover {
-  border: 1px solid lightgray;
-  background-color: #727272;
-  color: #fff;
-  cursor: pointer;
+  border: 1px solid lightgray !important;
+  background-color: #727272 !important;
+  color: #fff !important;
+  cursor: pointer !important;
 }

@@ -5,6 +5,7 @@ import './ProductWindow.css';
 import { Product } from '@/app/models/Product';
 import ProductCard from '../ProductCard/ProductCard';
 import axios from 'axios';
+import { makeSlidersDraggable } from './helpers/helpers';
 
 
 interface DefaultFilterState {
@@ -48,6 +49,7 @@ const ProductWindow = () => {
       }
     };
     fetchData();
+    makeSlidersDraggable();
   }, []);
 
   const setSelectedColor = (e: MouseEvent<HTMLElement>) => {
@@ -133,12 +135,12 @@ const ProductWindow = () => {
       }
     })
   }
-const containerClass = loading ? 'loading-container' : 'products-container'
+  const containerClass = loading ? 'loading-container' : 'products-container';
   return (
     <div className="product-window-container">
       <div className="filter-slider-window">
         <div className="btn-container">
-          <div className='filter-container'>
+          <div className="filter-container">
             <ToggleButton 
               value="All" 
               className={`${filterState.all} filter-btn`}
