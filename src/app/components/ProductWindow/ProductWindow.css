@@ -61,7 +61,7 @@
     cursor: grab;
   }
   
-  .filter-container::selection {
+  .filter-container:active {
     cursor: grabbing;
   }
 }

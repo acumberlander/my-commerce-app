@@ -1,8 +1,8 @@
 const makeDraggable = () => {
   console.log('makeSlidersDraggable started to run...');
-  const carousel: HTMLElement | null = document.querySelector<HTMLElement>(".filter-container");
+  const carousel: HTMLElement | null = document.querySelector<HTMLElement>(".btn-container");
   // const arrowBtns = document.querySelectorAll(".wrapper i"); 
-  const wrapper = document.querySelector(".btn-container");
+  const wrapper = document.querySelector(".filter-container");
 
   const firstCard = carousel!.querySelector<HTMLElement>(".filter-btn");
   const firstCardWidth = firstCard!.offsetWidth;
@@ -13,7 +13,6 @@ const makeDraggable = () => {
     timeoutId: string | number | NodeJS.Timeout | undefined;
 
   const dragStart = (e: { pageX: any; }) => {
-    console.log('mousedown event just happened...');
     isDragging = true;
     carousel!.classList.add("dragging");
     startX = e.pageX;
@@ -47,25 +46,6 @@ const makeDraggable = () => {
     carousel!.classList.remove("dragging");
   };
 
-  // const autoPlay = () => { 
-  
-  //     // Return if window is smaller than 800 
-  //     if (window.innerWidth < 800) return;  
-      
-  //     // Calculate the total width of all cards 
-  //     const totalCardWidth = carousel.scrollWidth; 
-      
-  //     // Calculate the maximum scroll position 
-  //     const maxScrollLeft = totalCardWidth - carousel.offsetWidth; 
-      
-  //     // If the carousel is at the end, stop autoplay 
-  //     if (carousel.scrollLeft >= maxScrollLeft) return; 
-      
-  //     // Autoplay the carousel after every 2500ms 
-  //     timeoutId = setTimeout(() =>  
-  //         carousel.scrollLeft += firstCardWidth, 2500); 
-  // }; 
-
   carousel!.addEventListener("mousedown", dragStart);
   carousel!.addEventListener("mousemove", dragging);
   document.addEventListener("mouseup", dragStop);
@@ -86,7 +66,5 @@ const makeDraggable = () => {
 export const makeSlidersDraggable = () => {
   if (document.readyState !== 'loading') {
     makeDraggable();
-  } else {
-    makeDraggable();
-  };
-}
+  }
+};
