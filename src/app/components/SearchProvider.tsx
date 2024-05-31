@@ -1,6 +1,8 @@
+'use client';
+
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
-interface SearchContextProps {
+export interface SearchContextProps {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
 };

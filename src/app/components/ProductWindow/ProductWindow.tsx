@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useMemo, useState } from 'react';
 import { CircularProgress, ToggleButton } from "@mui/material"
 import './ProductWindow.css';
 import { Product } from '@/app/models/Product';
 import ProductCard from '../ProductCard/ProductCard';
 import axios from 'axios';
 import { makeSlidersDraggable } from './helpers/helpers';
+import { SearchContextProps } from '../SearchProvider';
 
 
 interface DefaultFilterState {
@@ -24,7 +25,7 @@ const defaultFilterState: DefaultFilterState = {
   jewelery: 'inactive-btn',
 };
 
-const ProductWindow = () => {
+const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<Boolean>(true);
   const [filterState, setFilterState] = useState<DefaultFilterState>(defaultFilterState);
@@ -32,17 +33,17 @@ const ProductWindow = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://fakestoreapi.com/products');
-        if (response.data.length) {
-          const productDataCopy = [...response.data];
-          productDataCopy.map((item: Product) => {
-            if (item.title.length > 50) {
-              item.title = item.title.slice(0, 47) + '...';
-            }
-          });
-          setProducts(productDataCopy);
-          setLoading(false);
-        }
+          const response = await axios.get('https://fakestoreapi.com/products');
+          if (response.data.length) {
+            const productDataCopy = [...response.data];
+            productDataCopy.map((item: Product) => {
+              if (item.title.length > 50) {
+                item.title = item.title.slice(0, 47) + '...';
+              }
+            });
+            setProducts(productDataCopy);
+            setLoading(false);
+          }
       } catch (error) {
         console.error('Error fetching product data: ', error);
         setLoading(false);
@@ -103,7 +104,6 @@ const ProductWindow = () => {
     if (btnClicked.className === 'active-btn') {
       return;
     } else {
-
       const activeButtons = document.querySelectorAll('.active-btn');
       activeButtons.forEach((btn) => {
         btn.classList.remove('active-btn');
@@ -114,27 +114,39 @@ const ProductWindow = () => {
     }
   };
 
+  const filteredProducts: Product[] = useMemo(() => {
+    if (!inputValue) {
+      return products;
+    }
+    
+    let categoryFilter = '';
+    Object.entries(filterState).forEach((entry) => {
+      if (entry[1] === 'active-btn') {
+        console.log('filter: ', entry)
+        categoryFilter = entry[0]
+      }
+    })
+
+    return products.filter(product => product.title.toLowerCase().includes(inputValue.toLowerCase()))
+  }, [products, inputValue, filterState]);
+
   const filterProducts = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setSelectedColor(e);
-    let filteredProducts: Product[] = [];
     setLoading(true);
-    axios.get('https://fakestoreapi.com/products')
-    .then((response) => {
-        const btnClicked = e.target as HTMLElement;
-        const productData = response.data;
-      if (btnClicked.innerText.toLowerCase() === 'all') {
-        setProducts(productData);
-        setLoading(false);
-      } else {
-        filteredProducts = productData.filter((product: Product) => {
-          return product.category === btnClicked.innerText.toLowerCase();
-        });
-        setProducts(filteredProducts);
-        setLoading(false);
-      }
-    })
+    
+    const btnClicked = e.target as HTMLElement;
+    if (btnClicked.innerText.toLowerCase() === 'all') {
+      filteredProducts
+      setLoading(false);
+    } else {
+      filteredProducts.filter((product: Product) => {
+        return product.category === btnClicked.innerText.toLowerCase();
+      });
+      setLoading(false);
+    }
   }
+
   const containerClass = loading ? 'loading-container' : 'products-container';
   return (
     <div className="product-window-container">
@@ -173,7 +185,7 @@ const ProductWindow = () => {
         </div>
       </div>
       <div className={containerClass}>
-        {loading ? (<CircularProgress />) : (products?.map((product) => (
+        {loading ? (<CircularProgress />) : (filteredProducts?.map((product) => (
           <ProductCard key={product.id} {...product} />
         )))}
       </div>
