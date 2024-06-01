@@ -26,7 +26,7 @@ const app = () => {
               <Navbar />
               <Hero />
               <MidSearch inputValue={inputValue} setInputValue={setInputValue} />
-              <ProductWindow inputValue={inputValue} setInputValue={setInputValue} />
+              <ProductWindow inputValue={inputValue} />
               <VideoSection />
               <MarketingSection />
               <Subscription />

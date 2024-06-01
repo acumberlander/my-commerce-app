@@ -99,8 +99,6 @@
   margin-bottom: 30px;
   min-height: 500px;
   max-height: 1000px;
-  overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 @media (max-width: 1350px) {
@@ -140,4 +138,17 @@
     overflow: hidden;
     height: 100%;
   }
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+
+.page-item {
+  width: 10px;
+  margin: 0 5px;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
 }

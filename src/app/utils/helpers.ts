@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+import { Product } from "../models/Product";
+
 const makeDraggable = () => {
   console.log('makeSlidersDraggable started to run...');
   const carousel: HTMLElement | null = document.querySelector<HTMLElement>(".btn-container");
@@ -67,4 +70,64 @@ export const makeSlidersDraggable = () => {
   if (document.readyState !== 'loading') {
     makeDraggable();
   }
+};
+
+/**
+ * Sets the mobileview state dynamically for any component that calls it, depending on the size of the window.
+ * @param mobileSize 
+ * @param setMobileView 
+ * @returns 
+ */
+export const setResponsiveness = (mobileSize: number, setMobileView: Dispatch<SetStateAction<boolean>>) => {
+  return window.innerWidth < mobileSize ? setMobileView(true) : setMobileView(false);
+}
+
+/**
+ * Adjusts the amount products shown per page depending on the size of the window.
+ * @param setItemsPerPage 
+ * @returns 
+ */
+export const setPaginationResponsiveness = (setItemsPerPage: Dispatch<SetStateAction<number>>) => {
+  if (window.innerWidth < 751) {
+    return setItemsPerPage(3);
+  }
+  if (window.innerWidth < 1200) {
+    return setItemsPerPage(6);
+  }
+  if (window.innerWidth >= 1200) {
+    return setItemsPerPage(8)
+  }
+}
+
+/**
+ * Randomly shuffles an array that is passed to it.
+ * @param array 
+ * @returns 
+ */
+export const shuffleArray = (array: Array<Product>) => {
+  for (let i = array.length - 1; i > 0; i--) {
+      // Generate a random index from 0 to i
+      const j = Math.floor(Math.random() * (i + 1));
+      
+      // Swap elements at indices i and j
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+/**
+ * Displays prices with the typical currency convention.
+ * @param product 
+ * @returns 
+ */
+export const displayWithZero = (product: Product) => {
+  const firstNumAfterDecimal = product.price.toString().split('.')[1];
+  if (firstNumAfterDecimal) {
+    if (firstNumAfterDecimal.length < 2) {
+      return product.price + '0';
+    }
+  } else {
+    return product.price + '.00'
+  }
+  return product.price;
 };

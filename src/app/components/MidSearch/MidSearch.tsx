@@ -6,6 +6,7 @@ import searchIcon from '../../../icons/search-interface-symbol.png';
 import './MidSearch.css';
 import { Button, Input } from "@mui/material";
 import { SearchContextProps } from '../SearchProvider';
+import { setResponsiveness } from '@/app/utils/helpers';
 
 const MidSearch = ({inputValue, setInputValue}: SearchContextProps) => {
   const [mobileView, setMobileView] = useState(false);
@@ -16,15 +17,8 @@ const MidSearch = ({inputValue, setInputValue}: SearchContextProps) => {
   }
 
   useEffect(() => {
-    const setResponsiveness = () => {
-      return window.innerWidth < 901
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
+    setResponsiveness(901, setMobileView);
+    window.addEventListener('resize', () => setResponsiveness(901, setMobileView));
   }, []);
 
   return (

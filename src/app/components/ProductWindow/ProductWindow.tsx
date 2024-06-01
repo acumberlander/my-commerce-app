@@ -4,10 +4,9 @@ import { CircularProgress, ToggleButton } from "@mui/material"
 import './ProductWindow.css';
 import { Product } from '@/app/models/Product';
 import ProductCard from '../ProductCard/ProductCard';
-import axios from 'axios';
-import { makeSlidersDraggable } from './helpers/helpers';
+import { makeSlidersDraggable, setPaginationResponsiveness, setResponsiveness } from '../../utils/helpers';
 import { SearchContextProps } from '../SearchProvider';
-
+import { fetchProducts } from '@/app/apiRequests';
 
 interface DefaultFilterState {
   all: string,
@@ -25,33 +24,20 @@ const defaultFilterState: DefaultFilterState = {
   jewelery: 'inactive-btn',
 };
 
-const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
+const ProductWindow = ({inputValue}: SearchContextProps) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [filterState, setFilterState] = useState<DefaultFilterState>(defaultFilterState);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-          const response = await axios.get('https://fakestoreapi.com/products');
-          if (response.data.length) {
-            const productDataCopy = [...response.data];
-            productDataCopy.map((item: Product) => {
-              if (item.title.length > 50) {
-                item.title = item.title.slice(0, 47) + '...';
-              }
-            });
-            setProducts(productDataCopy);
-            setLoading(false);
-          }
-      } catch (error) {
-        console.error('Error fetching product data: ', error);
-        setLoading(false);
-      }
-    };
-    fetchData();
+    fetchProducts(setProducts, setLoading);
+    setPaginationResponsiveness(setItemsPerPage);
     makeSlidersDraggable();
+
+    window.addEventListener('resize', () => setPaginationResponsiveness(setItemsPerPage));
   }, []);
 
   const setSelectedColor = (e: MouseEvent<HTMLElement>) => {
@@ -121,7 +107,21 @@ const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
         const matchesSearch = !inputValue || product.title.toLowerCase().includes(inputValue.toLowerCase());
         return matchesCategory && matchesSearch;
     });
-}, [products, inputValue, categoryFilter]);
+  }, [products, inputValue, categoryFilter]);
+  
+  // Calculate the current products to display
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Total number of pages
+  let pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   const filterProducts = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -135,6 +135,10 @@ const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
     } else {
       setCategoryFilter(btnClicked.innerText.toLowerCase());
       setLoading(false);
+    }
+
+    for (let i = 1; i <= Math.ceil(currentProducts.length / itemsPerPage); i++) {
+      pageNumbers.push(i);
     }
   }
 
@@ -176,10 +180,21 @@ const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
         </div>
       </div>
       <div className={containerClass}>
-        {loading ? (<CircularProgress />) : (filteredProducts?.map((product) => (
+        {loading ? (<CircularProgress />) : (currentProducts?.map((product) => (
           <ProductCard key={product.id} {...product} />
         )))}
       </div>
+      <nav>
+        <ul className='pagination'>
+          {pageNumbers.map(number => (
+            <li key={number} className='page-item'>
+              <a onClick={() => paginate(number)} className='page-link'>
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   )
 }
