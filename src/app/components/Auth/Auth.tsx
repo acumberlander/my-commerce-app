@@ -72,7 +72,7 @@ const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="auth-input"
         />
-        <button onClick={() => handleSignIn(email, password)}>Sign in with Email</button>
+        {/* <button onClick={() => handleSignIn(email, password)}>Sign in with Email</button> */}
         <div className="spinner-container">
           { loading ? <CircularProgress /> : null }
         </div>
