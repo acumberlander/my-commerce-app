@@ -8,57 +8,23 @@ import './MarketingSection.css';
 import { Product } from '@/app/models/Product';
 import axios from 'axios';
 import SliderItem from '../SliderItem/SliderItem';
+import { setResponsiveness, shuffleArray } from '@/app/utils/helpers';
+import { fetchProducts } from '@/app/apiRequests';
 
 const MarketingSection = () => {
   const [mobileView, setMobileView] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
-
-  const shuffleArray = (array: Array<Product>) => {
-    for (let i = array.length - 1; i > 0; i--) {
-        // Generate a random index from 0 to i
-        const j = Math.floor(Math.random() * (i + 1));
-        
-        // Swap elements at indices i and j
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
+  const [loading, setLoading] = useState<boolean>(true);
 
   const marketingProducts = () => {
     return shuffleArray(products).slice(0, 6);
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://fakestoreapi.com/products');
-        if (response.data.length) {
-          const productDataCopy = [...response.data];
-          productDataCopy.map((item: Product) => {
-            if (item.title.length > 50) {
-              item.title = item.title.slice(0, 47) + '...';
-            }
-          });
-          setProducts(productDataCopy);
-          setLoading(false);
-        }
-      } catch (error) {
-        console.error('Error fetching product data: ', error);
-        setLoading(false);
-      }
-    };
-    const setResponsiveness = () => {
-      return window.innerWidth < 1251
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
+    setResponsiveness(1251, setMobileView);
+    window.addEventListener('resize', () => setResponsiveness(1251, setMobileView));
 
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
-
-    fetchData();
+    fetchProducts(setProducts, setLoading);
   }, []);
 
   return (

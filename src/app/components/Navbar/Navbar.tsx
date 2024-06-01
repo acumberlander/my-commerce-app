@@ -14,6 +14,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useUserContext } from '../UserProvider';
+import { setResponsiveness } from '@/app/utils/helpers';
 
 
 const Navbar = () => {
@@ -69,15 +70,8 @@ const Navbar = () => {
     </Box>
   );
   useEffect(() => {
-    const setResponsiveness = () => {
-      return window.innerWidth < 768
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
+    setResponsiveness(768, setMobileView);
+    window.addEventListener('resize', () => setResponsiveness(768, setMobileView));
   }, []);
 
   return (

@@ -4,7 +4,7 @@ import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffe
 
 export interface SearchContextProps {
   inputValue: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
+  setInputValue?: Dispatch<SetStateAction<string>>;
 };
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);

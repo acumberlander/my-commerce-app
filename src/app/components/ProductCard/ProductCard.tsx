@@ -4,29 +4,14 @@ import './ProductCard.css';
 import { Product } from '../../models/Product'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { displayWithZero, setResponsiveness } from '@/app/utils/helpers';
 
 const ProductCard = (product: Product) => {
   const [mobileView, setMobileView] = useState<boolean>(false);
-  const displayWithZero = () => {
-    const firstNumAfterDecimal = product.price.toString().split('.')[1];
-    if (firstNumAfterDecimal) {
-      if (firstNumAfterDecimal.length < 2) {
-        return product.price + '0';
-      }
-    } else {
-      return product.price + '.00'
-    }
-    return product.price;
-  };
-
+  
   useEffect(() => {
-    const setResponsiveness = () => {
-      return window.innerWidth < 900
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-    setResponsiveness();
-    window.addEventListener('resize', () => setResponsiveness());
+    setResponsiveness(900, setMobileView);
+    window.addEventListener('resize', () => setResponsiveness(900, setMobileView));
   }, [])
 
   return (
@@ -44,8 +29,7 @@ const ProductCard = (product: Product) => {
             <div className="review-text">{product.stars} {' '} ({product?.reviews?.length} Reviews)</div>
           </div>
         </div>
-        <div>${displayWithZero()}</div>
-        {/* <div>${product.price}</div> */}
+        <div>${displayWithZero(product)}</div>
       </div>
 
       <div className="product-card-btn-container">
