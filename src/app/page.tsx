@@ -11,11 +11,13 @@ import MarketingSection from "./components/MarketingSection/MarketingSection";
 import Subscription from "./components/Subscription/Subscription";
 import Footer from "./components/Footer/Footer";
 import { useUserContext } from "./components/UserProvider";
+import { useSearchContext } from "./components/SearchProvider";
 import AuthPage from "./auth/page";
 
 
 const app = () => {
   const { loggedIn }  = useUserContext();
+  const { inputValue, setInputValue }  = useSearchContext();
   
   return (
     <div className='app-container'>
@@ -23,8 +25,8 @@ const app = () => {
           ( <>
               <Navbar />
               <Hero />
-              <MidSearch />
-              <ProductWindow />
+              <MidSearch inputValue={inputValue} setInputValue={setInputValue} />
+              <ProductWindow inputValue={inputValue} setInputValue={setInputValue} />
               <VideoSection />
               <MarketingSection />
               <Subscription />

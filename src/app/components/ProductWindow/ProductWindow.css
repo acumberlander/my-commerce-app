@@ -51,6 +51,19 @@
   justify-content: space-around;
   width: 750px;
   height: 40px;
+  /* scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  overflow-x: auto;  */
+}
+
+@media (max-width: 829px) {
+  .filter-container:hover {
+    cursor: grab;
+  }
+  
+  .filter-container:active {
+    cursor: grabbing;
+  }
 }
 
 .btn-container {
@@ -58,12 +71,17 @@
   align-items: center;
   min-width: 725px;
   margin-bottom: 50px;
+  /* scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  overflow-x: auto;  */
 }
 
 .filter-slider-window {
   overflow-x: scroll;
   scrollbar-width: none;
   padding-left: 10px;
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 900px) {

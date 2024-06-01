@@ -29,10 +29,10 @@ export const useUserContext = () => {
 }
 
 export const GlobalContextProvider = ({children}: { children: ReactNode }) => {
-  let [user, setUser] = useState<User | null>(null);
-  let [userId, setUserId] = useState<string | null>(null);
-  let [loggedIn, setLoggedIn] = useState<boolean>(false);
-  let [cart, setCart] = useState<Product[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [cart, setCart] = useState<Product[]>([]);
 
   const signOutUser = () => {
     setLoggedIn(false);
