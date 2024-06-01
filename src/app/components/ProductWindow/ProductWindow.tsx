@@ -24,7 +24,7 @@ const defaultFilterState: DefaultFilterState = {
   jewelery: 'inactive-btn',
 };
 
-const ProductWindow = ({inputValue}: SearchContextProps) => {
+const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
