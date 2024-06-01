@@ -28,6 +28,7 @@ const defaultFilterState: DefaultFilterState = {
 const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<Boolean>(true);
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [filterState, setFilterState] = useState<DefaultFilterState>(defaultFilterState);
   
   useEffect(() => {
@@ -115,20 +116,12 @@ const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
   };
 
   const filteredProducts: Product[] = useMemo(() => {
-    if (!inputValue) {
-      return products;
-    }
-    
-    let categoryFilter = '';
-    Object.entries(filterState).forEach((entry) => {
-      if (entry[1] === 'active-btn') {
-        console.log('filter: ', entry)
-        categoryFilter = entry[0]
-      }
-    })
-
-    return products.filter(product => product.title.toLowerCase().includes(inputValue.toLowerCase()))
-  }, [products, inputValue, filterState]);
+    return products.filter(product => {
+        const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
+        const matchesSearch = !inputValue || product.title.toLowerCase().includes(inputValue.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+}, [products, inputValue, categoryFilter]);
 
   const filterProducts = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -137,12 +130,10 @@ const ProductWindow = ({inputValue, setInputValue}: SearchContextProps) => {
     
     const btnClicked = e.target as HTMLElement;
     if (btnClicked.innerText.toLowerCase() === 'all') {
-      filteredProducts
+      setCategoryFilter('all');
       setLoading(false);
     } else {
-      filteredProducts.filter((product: Product) => {
-        return product.category === btnClicked.innerText.toLowerCase();
-      });
+      setCategoryFilter(btnClicked.innerText.toLowerCase());
       setLoading(false);
     }
   }
