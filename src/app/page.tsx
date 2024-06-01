@@ -12,16 +12,24 @@ import Subscription from "./components/Subscription/Subscription";
 import Footer from "./components/Footer/Footer";
 import { useUserContext } from "./components/UserProvider";
 import { useSearchContext } from "./components/SearchProvider";
-import AuthPage from "./auth/page";
+// import AuthPage from "./auth/page";
 
 
 const app = () => {
-  const { loggedIn }  = useUserContext();
+  // const { loggedIn }  = useUserContext();
   const { inputValue, setInputValue }  = useSearchContext();
   
   return (
     <div className='app-container'>
-        {loggedIn ? 
+      <Navbar />
+      <Hero />
+      <MidSearch inputValue={inputValue} setInputValue={setInputValue} />
+      <ProductWindow inputValue={inputValue} />
+      <VideoSection />
+      <MarketingSection />
+      <Subscription />
+      <Footer />
+        {/* {loggedIn ? 
           ( <>
               <Navbar />
               <Hero />
@@ -35,7 +43,7 @@ const app = () => {
           ): (
           <AuthPage />
         )
-        }
+        } */}
     </div>
   )
 }
