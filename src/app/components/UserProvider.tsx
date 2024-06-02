@@ -3,8 +3,8 @@
 import { Product } from "@/app/models/Product";
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 import { User, signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
-import { listenToAuthChanges } from "./Auth/Auth";
+// import { auth } from "../utils/firebase";
+// import { listenToAuthChanges } from "./Auth/Auth";
 
 interface UserContextProps {
   user: User | null;
@@ -36,24 +36,24 @@ export const GlobalContextProvider = ({children}: { children: ReactNode }) => {
 
   const signOutUser = () => {
     setLoggedIn(false);
-    signOut(auth);
+    // signOut(auth);
   };
 
-  useEffect(() => {
-    const unsubscribe = listenToAuthChanges((authUser: User | null) => {
-      if (authUser) {
-        setUser(authUser);
-        setUserId(authUser.uid);
-        setLoggedIn(true);
-      } else {
-        setUser(null);
-        setUserId(null);
-        setLoggedIn(false);
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = listenToAuthChanges((authUser: User | null) => {
+  //     if (authUser) {
+  //       setUser(authUser);
+  //       setUserId(authUser.uid);
+  //       setLoggedIn(true);
+  //     } else {
+  //       setUser(null);
+  //       setUserId(null);
+  //       setLoggedIn(false);
+  //     }
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
 
   return (
     <UserContext.Provider value={{
