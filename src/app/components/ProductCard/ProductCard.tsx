@@ -5,6 +5,7 @@ import { Product } from '../../models/Product'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { displayWithZero, setResponsiveness } from '@/app/utils/helpers';
+import {run} from '../../db/database';
 
 const ProductCard = (product: Product) => {
   const [mobileView, setMobileView] = useState<boolean>(false);
@@ -12,7 +13,7 @@ const ProductCard = (product: Product) => {
   useEffect(() => {
     setResponsiveness(900, setMobileView);
     window.addEventListener('resize', () => setResponsiveness(900, setMobileView));
-  }, [])
+  }, []);
 
   return (
     <div className="product-card-container">
