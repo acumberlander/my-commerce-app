@@ -124,6 +124,7 @@
 
 .product-name {
   font-weight: bold;
+  min-height: 40px;
 }
 
 .product-card-btn-container {
