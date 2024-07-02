@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useState } from 'react';
 import logo from '../../../icons/squiggle.png';
-import cart from '../../../icons/online-shopping.png';
+import cartImg from '../../../icons/online-shopping.png';
 import avatar from '../../../icons/profile-pic.png';
 import './Navbar.css';
 import Image from 'next/image';
@@ -15,12 +15,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useUserContext } from '../UserProvider';
 import { setResponsiveness } from '@/app/utils/helpers';
-
+import { Product } from '@/app/models/Product';
+import { useCartContext } from '../CartProvider';
 
 const Navbar = () => {
   const [mobileView, setMobileView] = useState(false);
   const [state, setState] = useState({ right: false });
   const { signOutUser } = useUserContext();
+  const { cart, setCart } = useCartContext();
+  
   const toggleDrawer = (anchor: 'right', open: boolean) =>
   (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -97,7 +100,7 @@ const Navbar = () => {
       <div className='right-nav-section'>
         <a href="/cart">
             <div className='cart-container'>
-              <Image id="cart" src={cart} alt="cart" />
+              <Image id="cart" src={cartImg} alt="cart" />
             </div>
         </a>
         {mobileView ? (

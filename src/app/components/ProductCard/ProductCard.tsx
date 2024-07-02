@@ -1,18 +1,24 @@
 import starIcon from '../../../icons/star.png';
-import cart from '../../../icons/online-shopping.png';
+import cartImg from '../../../icons/online-shopping.png';
 import './ProductCard.css';
 import { Product } from '../../models/Product'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { displayWithZero, setResponsiveness } from '@/app/utils/helpers';
+import { useCartContext } from '../CartProvider';
 
 const ProductCard = (product: Product) => {
   const [mobileView, setMobileView] = useState<boolean>(false);
+  const { cart, setCart } = useCartContext();
   
   useEffect(() => {
     setResponsiveness(900, setMobileView);
     window.addEventListener('resize', () => setResponsiveness(900, setMobileView));
-  }, [])
+  }, []);
+
+  const addToCart = (product: Product) => { 
+    setCart([...cart, product]);
+  }
 
   return (
     <div className="product-card-container">
@@ -35,11 +41,11 @@ const ProductCard = (product: Product) => {
       <div className="product-card-btn-container">
         {
           mobileView ? (
-            <button className='add-to-cart'>
-              <Image className='cart-icon' src={cart} alt="cart" />
+            <button onClick={() => addToCart(product)} className='add-to-cart'>
+              <Image className='cart-icon' src={cartImg} alt="cartImg" />
             </button>
           ): (
-            <button className='add-to-cart'>Add to Cart</button>
+            <button onClick={() => addToCart(product)} className='add-to-cart'>Add to Cart</button>
           )
         }
         <button className='buy-now black-btn'>Buy Now</button>

@@ -2,8 +2,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import Hero from "./components/Hero/Hero";
-import Navbar from "./components/Navbar/Navbar"
-import './page.css';
+import Navbar from "./components/Navbar/Navbar";
 import ProductWindow from "./components/ProductWindow/ProductWindow";
 import MidSearch from "./components/MidSearch/MidSearch";
 import VideoSection from "./components/VideoSection/VideoSection";
@@ -12,13 +11,14 @@ import Subscription from "./components/Subscription/Subscription";
 import Footer from "./components/Footer/Footer";
 import { useUserContext } from "./components/UserProvider";
 import { useSearchContext } from "./components/SearchProvider";
+import { useCartContext } from "./components/CartProvider";
 // import AuthPage from "./auth/page";
 
 
 const app = () => {
   // const { loggedIn }  = useUserContext();
   const { inputValue, setInputValue }  = useSearchContext();
-  
+
   return (
     <div className='app-container'>
       <Navbar />
