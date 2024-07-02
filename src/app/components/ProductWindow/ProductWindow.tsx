@@ -123,7 +123,7 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
     pageNumbers.push(i);
   }
 
-  const filterProducts = (e: MouseEvent<HTMLElement>) => {
+  const filterProductsByCategory = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setSelectedColor(e);
     setLoading(true);
@@ -151,30 +151,31 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
             <ToggleButton 
               value="All" 
               className={`${filterState.all} filter-btn`}
-              onClick={filterProducts}
+              onClick={filterProductsByCategory}
             >All</ToggleButton>
               
             <ToggleButton 
               value="Electronics" 
               className={`${filterState.electronics} filter-btn`}
-              onClick={filterProducts}
+              onClick={filterProductsByCategory}
             >Electronics</ToggleButton>
             
             <ToggleButton 
               value="Men's Clothing" 
               className={`${filterState.men} filter-btn`}
-              onClick={filterProducts}
+              onClick={filterProductsByCategory}
             >Men's Clothing</ToggleButton>
             
             <ToggleButton 
               value="Women's Clothing" 
               className={`${filterState.women} filter-btn`}
-              onClick={filterProducts}
+              onClick={filterProductsByCategory}
             >Women's Clothing</ToggleButton>
+            
             <ToggleButton 
               value="Jewelery" 
               className={`${filterState.jewelery} filter-btn`}
-              onClick={filterProducts}
+              onClick={filterProductsByCategory}
             >Jewelery</ToggleButton>
           </div>
         </div>
