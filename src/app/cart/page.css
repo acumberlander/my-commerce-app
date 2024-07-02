@@ -1,0 +1,7 @@
+.image-and-category {
+  border-radius: 10px;
+  width:300px;
+  height: 200px;
+  display: flex;
+  justify-content: right;
+}

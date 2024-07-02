@@ -1,5 +1,10 @@
+type Rating = {
+  rate: number,
+  count: number
+}
+
 export type Product = {
-  id: string,
+  id: number,
   title: string,
   price: number,
   description: string,
@@ -7,4 +12,5 @@ export type Product = {
   category: string,
   stars?: number,
   reviews?: string[] | undefined,
+  rating?:  Rating
 }

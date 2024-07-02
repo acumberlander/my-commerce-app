@@ -35,7 +35,8 @@ const ProductCard = (product: Product) => {
             <div className="review-text">{product.stars} {' '} ({product?.reviews?.length} Reviews)</div>
           </div>
         </div>
-        <div>${displayWithZero(product)}</div>
+        {/* <div>${displayWithZero(product)}</div> */}
+        <div>${product.price}</div>
       </div>
 
       <div className="product-card-btn-container">
