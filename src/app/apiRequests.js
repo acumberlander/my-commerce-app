@@ -1,13 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
-import { Product } from "./models/Product";
 import axios from "axios";
 
-export const fetchProducts = async (setProducts: Dispatch<SetStateAction<Product[]>>, setLoading: Dispatch<SetStateAction<boolean>>) => {
+export const fetchProducts = async (setProducts, setLoading) => {
   try {
     const response = await axios.get('https://fakestoreapi.com/products');
     if (response.data.length) {
       const productDataCopy = [...response.data];
-      productDataCopy.map((item: Product) => {
+      productDataCopy.map((item) => {
         if (item.title.length > 50) {
           item.title = item.title.slice(0, 47) + '...';
         }

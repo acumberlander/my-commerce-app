@@ -11,18 +11,16 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Image from 'next/image';
-import { useUserContext } from '../../UserProvider';
 
 const MobileView = () => {
   const [state, setState] = useState({ right: false });
-  const { signOutUser } = useUserContext();
   const toggleDrawer =
-    (anchor: 'right', open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
+    (anchor, open) =>
+    (event) => {
       if (
         event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        ((event).key === 'Tab' ||
+          (event).key === 'Shift')
       ) {
         return;
       }
@@ -30,7 +28,7 @@ const MobileView = () => {
       setState({ ...state, [anchor]: open });
     };
 
-  const list = (anchor: 'right') => (
+  const list = (anchor) => (
     <Box
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -56,7 +54,7 @@ const MobileView = () => {
             </ListItem>
           </a>
         <Divider />
-          <a onClick={signOutUser}>
+          <a>
             <ListItem disablePadding>
                 <ListItemText primary="Sign Out" />
             </ListItem>

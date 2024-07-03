@@ -1,22 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import { MouseEvent, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CircularProgress, ToggleButton } from "@mui/material"
 import './ProductWindow.css';
-import { Product } from '@/app/models/Product';
 import ProductCard from '../ProductCard/ProductCard';
 import { makeSlidersDraggable, setPaginationResponsiveness, setResponsiveness } from '../../utils/helpers';
-import { SearchContextProps } from '../SearchProvider';
-import { fetchProducts } from '@/app/apiRequests';
+import { fetchProducts } from '../../apiRequests';
 
-interface DefaultFilterState {
-  all: string,
-  electronics: string,
-  men: string,
-  women: string,
-  jewelery: string,
-};
-
-const defaultFilterState: DefaultFilterState = {
+const defaultFilterState = {
   all: 'active-btn',
   electronics: 'inactive-btn',
   men: 'inactive-btn',
@@ -24,11 +14,11 @@ const defaultFilterState: DefaultFilterState = {
   jewelery: 'inactive-btn',
 };
 
-const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
-  const [filterState, setFilterState] = useState<DefaultFilterState>(defaultFilterState);
+const ProductWindow = ({inputValue}) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [filterState, setFilterState] = useState(defaultFilterState);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
 
@@ -40,8 +30,8 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
     window.addEventListener('resize', () => setPaginationResponsiveness(setItemsPerPage));
   }, []);
 
-  const setSelectedColor = (e: MouseEvent<HTMLElement>) => {
-    const btnClicked = e.target as HTMLElement;
+  const setSelectedColor = (e) => {
+    const btnClicked = e.target;
 
     switch (btnClicked.innerText.toLowerCase()) {
       case 'electronics':
@@ -101,7 +91,7 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
     }
   };
 
-  const filteredProducts: Product[] = useMemo(() => {
+  const filteredProducts = useMemo(() => {
     return products.filter(product => {
         const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
         const matchesSearch = !inputValue || product.title.toLowerCase().includes(inputValue.toLowerCase());
@@ -115,7 +105,7 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Total number of pages
   let pageNumbers = [];
@@ -123,12 +113,12 @@ const ProductWindow = ({inputValue}: Partial<SearchContextProps>) => {
     pageNumbers.push(i);
   }
 
-  const filterProductsByCategory = (e: MouseEvent<HTMLElement>) => {
+  const filterProductsByCategory = (e) => {
     e.preventDefault();
     setSelectedColor(e);
     setLoading(true);
     
-    const btnClicked = e.target as HTMLElement;
+    const btnClicked = e.target;
     if (btnClicked.innerText.toLowerCase() === 'all') {
       setCategoryFilter('all');
       setLoading(false);

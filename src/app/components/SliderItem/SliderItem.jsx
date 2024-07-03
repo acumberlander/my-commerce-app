@@ -1,7 +1,6 @@
-import { Product } from '@/app/models/Product'
 import './SliderItem.css';
 
-const SliderItem = (product: Product) => {
+const SliderItem = (product) => {
   return (
     <div className="carousel-item" style={{backgroundImage: `url(${product.image})`}}>
       <div className="slider-category">{product.category}</div>
