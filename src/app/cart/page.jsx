@@ -1,16 +1,14 @@
 'use client';
 
 import { Container } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import {Divider, Typography, Button} from '@mui/material';
-import { useCartContext } from '../components/CartProvider';
+import { CartContext } from '../components/CartProvider';
 import ProductCard from '../components/ProductCard/ProductCard';
-import { Product } from '../models/Product';
-import Image from 'next/image';
 import './page.css';
 
-const testProduct: Product = {
+const testProduct = {
     "id": 8,
     "title": "Pierced Owl Rose Gold Plated Stainless Steel Do...",
     "price": 10.99,
@@ -24,14 +22,9 @@ const testProduct: Product = {
 }
 
 const CartPage = () => {
-  const { cart, setCart } = useCartContext();
-
-  useEffect(() => {
-    setCart([testProduct]);
-    console.log(cart);
-  }, []);
-
-  const EmptyCart = (): React.ReactElement => (
+  const { cart, addToCart, removeFromCart, emptyCart } = useContext(CartContext);
+  
+  const EmptyCart = () => (
     <div className="">
       <span>You have no items in your shopping cart, {' '}</span>
       <a href="/">start adding some</a>!
@@ -46,13 +39,8 @@ const CartPage = () => {
 			</Typography>
 			<Divider className='divider' />
 			<div>
-        {cart.map((item) => (
-          <div key={item.id}>
-            <div className='image-and-category' style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover' }} />
-            <div>{item.title}</div>
-            <div>${item.price}</div>
-          </div>
-					// <ProductCard key={item.id} product={item} />
+        {cart?.map((item) => (
+					<ProductCard key={item.id} product={item} />
 				))}
 			</div>
 			<div className='emptyButtonContainer'>
@@ -87,7 +75,7 @@ const CartPage = () => {
 			</div>
 			<div className='checkoutButtonContainer'>
 				<Button
-					// component={Link}
+					component={Link}
 					to="/checkout"
 					className='checkoutButton'
 					size="large"
@@ -102,7 +90,7 @@ const CartPage = () => {
 
   return (
     <Container className='cart-container'>
-			{!cart.length ? (
+			{!cart?.length ? (
 				<EmptyCart />
 			) : (
 				<>

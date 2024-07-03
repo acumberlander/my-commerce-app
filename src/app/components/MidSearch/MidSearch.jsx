@@ -6,12 +6,12 @@ import searchIcon from '../../../icons/search-interface-symbol.png';
 import './MidSearch.css';
 import { Button, Input } from "@mui/material";
 import { SearchContextProps } from '../SearchProvider';
-import { setResponsiveness } from '@/app/utils/helpers';
+import { setResponsiveness } from '../../utils/helpers';
 
-const MidSearch = ({inputValue, setInputValue}: SearchContextProps) => {
+const MidSearch = ({inputValue, setInputValue}) => {
   const [mobileView, setMobileView] = useState(false);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
   }

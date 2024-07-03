@@ -1,24 +1,19 @@
 import starIcon from '../../../icons/star.png';
 import cartImg from '../../../icons/online-shopping.png';
 import './ProductCard.css';
-import { Product } from '../../models/Product'
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { displayWithZero, setResponsiveness } from '@/app/utils/helpers';
-import { useCartContext } from '../CartProvider';
+import { useEffect, useState, useContext } from 'react';
+import { displayWithZero, setResponsiveness } from '../../utils/helpers';
+import { CartContext } from '../CartProvider';
 
-const ProductCard = (product: Product) => {
-  const [mobileView, setMobileView] = useState<boolean>(false);
-  const { cart, setCart } = useCartContext();
+const ProductCard = (product) => {
+  const [mobileView, setMobileView] = useState(false);
+  const { cart, addToCart, removeFromCart, emptyCart } = useContext(CartContext);
   
   useEffect(() => {
     setResponsiveness(900, setMobileView);
     window.addEventListener('resize', () => setResponsiveness(900, setMobileView));
   }, []);
-
-  const addToCart = (product: Product) => { 
-    setCart([...cart, product]);
-  }
 
   return (
     <div className="product-card-container">
@@ -35,7 +30,7 @@ const ProductCard = (product: Product) => {
             <div className="review-text">{product.stars} {' '} ({product?.reviews?.length} Reviews)</div>
           </div>
         </div>
-        {/* <div>${displayWithZero(product)}</div> */}
+        <div>${displayWithZero(product)}</div>
         <div>${product.price}</div>
       </div>
 
