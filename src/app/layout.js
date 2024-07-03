@@ -14,11 +14,11 @@ export default function RootLayout({children}) {
   return (
     <html lang="en">
       <body className={inter.className}>
-          <CartProvider>
-            <SearchContextProvider>
-                {children}
-            </SearchContextProvider>
-          </CartProvider>
+        <CartProvider>
+          <SearchContextProvider>
+              {children}
+          </SearchContextProvider>
+        </CartProvider>
       </body>
     </html>
   );

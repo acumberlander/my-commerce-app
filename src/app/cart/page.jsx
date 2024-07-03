@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {Divider, Typography, Button} from '@mui/material';
 import { CartContext } from '../components/CartProvider';
 import ProductCard from '../components/ProductCard/ProductCard';
+import Hero from '../components/Hero/Hero';
 import './page.css';
 
 const testProduct = {
@@ -90,6 +91,7 @@ const CartPage = () => {
 
   return (
     <Container className='cart-container'>
+      <Hero />
 			{!cart?.length ? (
 				<EmptyCart />
 			) : (

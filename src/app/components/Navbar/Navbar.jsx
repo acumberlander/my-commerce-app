@@ -36,30 +36,30 @@ const Navbar = ({cart}) => {
       id="box"
     >
       <List>
-          <a href="/">
+          {/* <RouterLink to="/">
             <ListItem alignItems="center" disablePadding>
                 <ListItemText primary="Home" />
             </ListItem>
-          </a>
+          </RouterLink>
         <Divider />
-          <a href="#shop">
+          <a href="/#shop">
             <ListItem disablePadding>
                 <ListItemText primary="Shop" />
             </ListItem>
           </a>
         <Divider />
-          <a href="#blog">
+          <a href="/#blog">
             <ListItem disablePadding>
                 <ListItemText primary="Blog" />
             </ListItem>
           </a>
-        <Divider />
-          <a className="sign-out-link">
+        <Divider /> */}
+          {/* <a className="sign-out-link">
             <ListItem disablePadding>
                 <ListItemText primary="Sign Out" />
             </ListItem>
           </a>
-        <Divider />
+        <Divider /> */}
       </List>
     </Box>
   );
@@ -69,14 +69,14 @@ const Navbar = ({cart}) => {
   }, []);
 
   return (
-    <div className="navbar-container">
-        <a className="left-nav-section" href='/'>
+    <nav className="navbar-container">
+        <RouterLink className="left-nav-section" to='/'>
           <Image id="logo" src={logo} alt="Shopy" />
           <span id="logo-text">ShopyShop</span>
-        </a>
+        </RouterLink>
         {!mobileView && (
           <div className='mid-nav-section'>
-            <div>
+            {/* <div>
               <a href="/">Home</a>
             </div>
             <div>
@@ -84,13 +84,13 @@ const Navbar = ({cart}) => {
             </div>
             <div>
               <a href="#blog">Blog</a>
-            </div>
+            </div> */}
           </div>
         )
         }
       <div className='right-nav-section'>
         <RouterLink to="/cart">
-          <div className='cart-container'>
+          <div className='cart-icon-container'>
             <Image id="cart" src={cartImg} alt="cart" />
           </div>
         </RouterLink>
@@ -118,7 +118,7 @@ const Navbar = ({cart}) => {
         )
         }
           </div>
-    </div>
+    </nav>
   );
 };
 
