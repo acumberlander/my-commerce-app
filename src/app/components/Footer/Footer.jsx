@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import facebookIcon from '../../../icons/facebook-48.png';
 import instagramIcon from '../../../icons/icons8-instagram-50.png';
 import linkedinIcon from '../../../icons/white_linkedin.png';

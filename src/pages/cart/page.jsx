@@ -4,8 +4,9 @@ import { Container } from '@mui/material'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import {Divider, Typography, Button} from '@mui/material';
-import { CartContext } from '../components/CartProvider';
-import ProductCard from '../components/ProductCard/ProductCard';
+import { CartContext } from '../../app/components/CartProvider';
+import ProductCard from '../../app/components/ProductCard/ProductCard';
+import Hero from '../../app/components/Hero/Hero';
 import './page.css';
 
 const testProduct = {
@@ -90,6 +91,7 @@ const CartPage = () => {
 
   return (
     <Container className='cart-container'>
+      <Hero />
 			{!cart?.length ? (
 				<EmptyCart />
 			) : (
