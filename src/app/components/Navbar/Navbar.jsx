@@ -2,31 +2,25 @@
 
 import { Fragment, useEffect, useState } from 'react';
 import logo from '../../../icons/squiggle.png';
-import cart from '../../../icons/online-shopping.png';
+import cartImg from '../../../icons/online-shopping.png';
 import avatar from '../../../icons/profile-pic.png';
 import './Navbar.css';
 import Image from 'next/image';
 import MobileView from './Views/MobileView';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { useUserContext } from '../UserProvider';
-import { setResponsiveness } from '@/app/utils/helpers';
+import { Box, Drawer, List, Divider, ListItem, ListItemText } from '@mui/material';
+import { setResponsiveness, navigate } from '../../utils/helpers';
+import { Link as RouterLink } from 'react-router-dom';
 
-
-const Navbar = () => {
+const Navbar = ({cart}) => {
   const [mobileView, setMobileView] = useState(false);
   const [state, setState] = useState({ right: false });
-  const { signOutUser } = useUserContext();
-  const toggleDrawer = (anchor: 'right', open: boolean) =>
-  (event: React.KeyboardEvent | React.MouseEvent) => {
+  
+  const toggleDrawer = (anchor, open) =>
+  (event) => {
     if (
       event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
+      ((event).key === 'Tab' ||
+        (event).key === 'Shift')
     ) {
       return;
     }
@@ -34,7 +28,7 @@ const Navbar = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor: 'right') => (
+  const list = (anchor) => (
     <Box
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -60,7 +54,7 @@ const Navbar = () => {
             </ListItem>
           </a>
         <Divider />
-          <a className="sign-out-link" onClick={signOutUser}>
+          <a className="sign-out-link">
             <ListItem disablePadding>
                 <ListItemText primary="Sign Out" />
             </ListItem>
@@ -95,11 +89,12 @@ const Navbar = () => {
         )
         }
       <div className='right-nav-section'>
-        <a href="/cart">
-            <div className='cart-container'>
-              <Image id="cart" src={cart} alt="cart" />
-            </div>
-        </a>
+        <RouterLink to="/cart">
+          <div className='cart-container'>
+            <Image id="cart" src={cartImg} alt="cart" />
+          </div>
+        </RouterLink>
+        
         {mobileView ? (
           <Fragment key={'right'}>
             <div className='profile-container'>

@@ -1,9 +1,7 @@
 import SliderItem from '../SliderItem/SliderItem'
 import './Slider.css';
 
-import { Product } from '@/app/models/Product';
-
-const Slider = (products: Product[]) => {
+const Slider = (products) => {
   return (
     <div className="carousel-window">
       <div className="carousel-item-container">

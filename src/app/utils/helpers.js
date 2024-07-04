@@ -1,28 +1,25 @@
-import { Dispatch, SetStateAction } from "react";
-import { Product } from "../models/Product";
-
 const makeDraggable = () => {
   console.log('makeSlidersDraggable started to run...');
-  const carousel: HTMLElement | null = document.querySelector<HTMLElement>(".btn-container");
+  const carousel = document.querySelector(".btn-container");
   // const arrowBtns = document.querySelectorAll(".wrapper i"); 
   const wrapper = document.querySelector(".filter-container");
 
-  const firstCard = carousel!.querySelector<HTMLElement>(".filter-btn");
-  const firstCardWidth = firstCard!.offsetWidth;
+  const firstCard = carousel.querySelector(".filter-btn");
+  const firstCardWidth = firstCard.offsetWidth;
 
   let isDragging = false,
-    startX: number,
-    startScrollLeft: number,
-    timeoutId: string | number | NodeJS.Timeout | undefined;
+    startX,
+    startScrollLeft,
+    timeoutId;
 
-  const dragStart = (e: { pageX: any; }) => {
+  const dragStart = (e) => {
     isDragging = true;
-    carousel!.classList.add("dragging");
+    carousel.classList.add("dragging");
     startX = e.pageX;
-    startScrollLeft = carousel!.scrollLeft;
+    startScrollLeft = carousel.scrollLeft;
   };
 
-  const dragging = (e: { pageX: number; }) => {
+  const dragging = (e) => {
     console.log('mousemove event just happened...');
     if (!isDragging) return;
   
@@ -32,7 +29,7 @@ const makeDraggable = () => {
     // Check if the new scroll position exceeds  
     // the carousel boundaries 
     if (newScrollLeft <= 0 || newScrollLeft >=
-      carousel!.scrollWidth - carousel!.offsetWidth) {
+      carousel.scrollWidth - carousel.offsetWidth) {
           
       // If so, prevent further dragging 
       isDragging = false;
@@ -40,19 +37,19 @@ const makeDraggable = () => {
     }
   
     // Otherwise, update the scroll position of the carousel 
-    carousel!.scrollLeft = newScrollLeft;
+    carousel.scrollLeft = newScrollLeft;
   };
 
   const dragStop = () => {
     console.log('mouseup event just happened...');
     isDragging = false;
-    carousel!.classList.remove("dragging");
+    carousel.classList.remove("dragging");
   };
 
-  carousel!.addEventListener("mousedown", dragStart);
-  carousel!.addEventListener("mousemove", dragging);
+  carousel.addEventListener("mousedown", dragStart);
+  carousel.addEventListener("mousemove", dragging);
   document.addEventListener("mouseup", dragStop);
-  wrapper!.addEventListener("mouseenter", () =>
+  wrapper.addEventListener("mouseenter", () =>
     clearTimeout(timeoutId));
   // wrapper.addEventListener("mouseleave", autoPlay); 
 
@@ -78,7 +75,7 @@ export const makeSlidersDraggable = () => {
  * @param setMobileView 
  * @returns 
  */
-export const setResponsiveness = (mobileSize: number, setMobileView: Dispatch<SetStateAction<boolean>>) => {
+export const setResponsiveness = (mobileSize, setMobileView) => {
   return window.innerWidth < mobileSize ? setMobileView(true) : setMobileView(false);
 }
 
@@ -87,7 +84,7 @@ export const setResponsiveness = (mobileSize: number, setMobileView: Dispatch<Se
  * @param setItemsPerPage 
  * @returns 
  */
-export const setPaginationResponsiveness = (setItemsPerPage: Dispatch<SetStateAction<number>>) => {
+export const setPaginationResponsiveness = (setItemsPerPage) => {
   if (window.innerWidth < 751) {
     return setItemsPerPage(3);
   }
@@ -104,7 +101,7 @@ export const setPaginationResponsiveness = (setItemsPerPage: Dispatch<SetStateAc
  * @param array 
  * @returns 
  */
-export const shuffleArray = (array: Array<Product>) => {
+export const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
       // Generate a random index from 0 to i
       const j = Math.floor(Math.random() * (i + 1));
@@ -120,7 +117,7 @@ export const shuffleArray = (array: Array<Product>) => {
  * @param product 
  * @returns 
  */
-export const displayWithZero = (product: Product) => {
+export const displayWithZero = (product) => {
   const firstNumAfterDecimal = product.price.toString().split('.')[1];
   if (firstNumAfterDecimal) {
     if (firstNumAfterDecimal.length < 2) {
@@ -131,3 +128,4 @@ export const displayWithZero = (product: Product) => {
   }
   return product.price;
 };
+

@@ -5,16 +5,14 @@ import soundIcon from '../../../icons/volume.png';
 import electricIcon from '../../../icons/lightning.png';
 import cleanIcon from '../../../icons/clean.png';
 import './MarketingSection.css';
-import { Product } from '@/app/models/Product';
-import axios from 'axios';
 import SliderItem from '../SliderItem/SliderItem';
-import { setResponsiveness, shuffleArray } from '@/app/utils/helpers';
-import { fetchProducts } from '@/app/apiRequests';
+import  { setResponsiveness, shuffleArray } from '../../utils/helpers';
+import { fetchProducts } from '../../apiRequests';
 
 const MarketingSection = () => {
   const [mobileView, setMobileView] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const marketingProducts = () => {
     return shuffleArray(products).slice(0, 6);
