@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useMemo, useState } from 'react';
 import { CircularProgress, ToggleButton } from "@mui/material"

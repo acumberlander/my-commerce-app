@@ -1,3 +1,5 @@
+'use client'
+
 import starIcon from '../../../icons/star.png';
 import cartImg from '../../../icons/online-shopping.png';
 import './ProductCard.css';
