@@ -3,9 +3,9 @@ import {
 	ADD_TO_CART,
 	REMOVE_FROM_CART,
 	EMPTY_CART,
-	UPDATE_QUANTITY,
-	REFRESH_CART,
-	CAPTURE_CHECKOUT,
+	// UPDATE_QUANTITY,
+	// REFRESH_CART,
+	// CAPTURE_CHECKOUT,
 } from '../constants/actionTypes';
 // import commerce from '../lib/commerce';
 
